@@ -1,99 +1,841 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ISKCON Dashboard - Radha Krishna</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <style>
-    body {
-      background: #f3f4f6;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    header {
-      background: linear-gradient(90deg, #6a11cb, #2575fc);
-      color: white;
-      padding: 2rem 0;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    h1, h2 {
-      color: #2c3e50;
-    }
-    .card {
-      border: none;
-      border-radius: 1rem;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
-      transition: transform 0.2s ease-in-out;
-    }
-    .card:hover {
-      transform: scale(1.02);
-    }
-    .footer {
-      text-align: center;
-      padding: 2rem 1rem 1rem;
-      background: #fff;
-      margin-top: 4rem;
-      color: #777;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adarsh Raj S - Web Developer Portfolio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --accent-color: #e74c3c;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            background-color: var(--secondary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: white !important;
+        }
+        
+        .nav-link {
+            color: white !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content h1 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 10px 25px;
+            font-weight: 500;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+        }
+        
+        .btn-outline-light {
+            padding: 10px 25px;
+            font-weight: 500;
+            margin-left: 15px;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .section-title h2 {
+            font-weight: 700;
+            color: var(--secondary-color);
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-color);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .about-img:hover {
+            transform: translateY(-10px);
+        }
+        
+        .skill-item {
+            margin-bottom: 20px;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .progress {
+            height: 10px;
+            border-radius: 5px;
+        }
+        
+        .progress-bar {
+            background-color: var(--primary-color);
+        }
+        
+        .experience-card, .education-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .experience-card:hover, .education-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .experience-card h4, .education-card h4 {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+        
+        .experience-card h5, .education-card h5 {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .experience-card .date, .education-card .date {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        
+        .project-card {
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 20px;
+            background-color: white;
+        }
+        
+        .project-content h4 {
+            color: var(--secondary-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .project-content p {
+            color: #7f8c8d;
+            margin-bottom: 15px;
+        }
+        
+        .tech-badge {
+            display: inline-block;
+            background-color: var(--light-color);
+            color: var(--secondary-color);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .contact-info {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 99;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                text-align: center;
+            }
+            
+            .btn-outline-light {
+                margin-left: 0;
+                margin-top: 15px;
+            }
+        }
+    </style>
 </head>
-<body>
-
-  <!-- Header -->
-  <header>
-    <h1>ISKCON Dashboard</h1>
-    <p class="lead">Discover the Divine Story of Radha and Krishna</p>
-  </header>
-
-  <!-- Dashboard Section -->
-  <div class="container py-5">
-    <div class="row g-4">
-
-      <!-- Introduction Card -->
-      <div class="col-md-4">
-        <div class="card bg-light text-dark h-100">
-          <div class="card-body">
-            <h5 class="card-title">Introduction</h5>
-            <p class="card-text">
-              ISKCON spreads the teachings of Lord Krishna, highlighting the eternal love between Radha and Krishna, a symbol of spiritual devotion and purity.
-            </p>
-          </div>
+<body data-bs-spy="scroll" data-bs-target=".navbar">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Adarsh Raj S</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education">Education</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
+    </nav>
 
-      <!-- Story Card -->
-      <div class="col-md-4">
-        <div class="card bg-warning-subtle h-100">
-          <div class="card-body">
-            <h5 class="card-title">Radha & Krishna Story</h5>
-            <p class="card-text">
-              Their divine union represents the soul's longing for God. The rasa lila and pastimes show the joy of spiritual connection and unconditional love.
-            </p>
-          </div>
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content">
+                        <h1>Adarsh Raj S</h1>
+                        <h3>Web Developer</h3>
+                        <p>Passionate and dedicated Web Developer skilled in Python, Django, WordPress, and Shopify. I build websites with a focus on clean design, performance, and user experience.</p>
+                        <a href="#contact" class="btn btn-primary">Contact Me</a>
+                        <a href="#projects" class="btn btn-outline-light">View My Work</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://via.placeholder.com/500x500" alt="Adarsh Raj S" class="img-fluid d-none d-lg-block">
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <!-- Significance Card -->
-      <div class="col-md-4">
-        <div class="card bg-success-subtle text-dark h-100">
-          <div class="card-body">
-            <h5 class="card-title">Significance in ISKCON</h5>
-            <p class="card-text">
-              Festivals like Janmashtami and Radhastami celebrate Radha-Krishna through music, dance, and devotion across ISKCON temples worldwide.
-            </p>
-          </div>
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-5">
+                    <img src="https://via.placeholder.com/400x400" alt="About Me" class="img-fluid about-img">
+                </div>
+                <div class="col-lg-7">
+                    <h3>Web Developer & Digital Enthusiast</h3>
+                    <p>Passionate and dedicated Web Developer skilled in Python, Django, WordPress, and Shopify. Websites are built with a focus on clean design, performance, and user experience, ensuring they are responsive and SEO-friendly. Always eager to stay updated with the latest web trends and technologies.</p>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <ul>
+                                <li><strong>Name:</strong> Adarsh Raj S</li>
+                                <li><strong>Email:</strong> adarshrajscasual@gmail.com</li>
+                                <li><strong>Phone:</strong> +91 8075551892 / +919496081054</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul>
+                                <li><strong>Location:</strong> Vadakara, Kozhikode</li>
+                                <li><strong>Freelance:</strong> Available</li>
+                                <li><strong>Experience:</strong> 1+ Years</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="social-icons mt-4">
+                        <a href="www.linkedin.com/in/adarsh-raj-s-61657a30a" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/adarshrajs1999" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
 
-    </div>
-  </div>
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Skills</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Python & Django</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>HTML, CSS, Bootstrap</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>JavaScript</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>WordPress</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Shopify</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>SEO & Digital Marketing</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <h4 class="text-center mb-4">Other Skills</h4>
+                    <div class="d-flex flex-wrap justify-content-center">
+                        <span class="tech-badge">GitHub</span>
+                        <span class="tech-badge">Canva</span>
+                        <span class="tech-badge">Excel</span>
+                        <span class="tech-badge">Zoho</span>
+                        <span class="tech-badge">Meta Ads</span>
+                        <span class="tech-badge">Google Ads</span>
+                        <span class="tech-badge">AdSense</span>
+                        <span class="tech-badge">Content Creation</span>
+                        <span class="tech-badge">ChatGPT</span>
+                        <span class="tech-badge">DeepSeek</span>
+                        <span class="tech-badge">Business Management</span>
+                        <span class="tech-badge">Sales</span>
+                        <span class="tech-badge">Leadership</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>© 2025 ISKCON. All rights reserved.</p>
-  </footer>
+    <!-- Experience Section -->
+    <section id="experience" class="py-5">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Experience</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="experience-card">
+                        <h4>Web Developer</h4>
+                        <h5>Futura Labs Technologies LLP Calicut</h5>
+                        <p class="date">Sept 2024 - Present</p>
+                        <ul>
+                            <li>Build and manage websites using WordPress, Shopify, and Django</li>
+                            <li>Ensure seamless functionality, mobile responsiveness, and cross-platform compatibility</li>
+                            <li>Collaborate with design, marketing, and content teams</li>
+                            <li>Lead initiatives in SEO optimization, intuitive UI/UX design</li>
+                            <li>Involved in business development and client relationship management</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="experience-card">
+                        <h4>Python Developer Intern</h4>
+                        <h5>Deityom Digital Marketing Agency Calicut</h5>
+                        <p class="date">January 2024 - April 2024</p>
+                        <ul>
+                            <li>Developed dynamic web applications using Python and Django</li>
+                            <li>Integrated front-end technologies like HTML, CSS, and JavaScript</li>
+                            <li>Worked with databases such as PostgreSQL and SQLite</li>
+                            <li>Created RESTful APIs</li>
+                            <li>Ensured optimal performance through thorough debugging and testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Education Section -->
+    <section id="education" class="py-5 bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Education</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="education-card">
+                        <h4>BTECH - Mechanical Engineering</h4>
+                        <h5>LBS College Of Engineering Kasaragod</h5>
+                        <p class="date">2016 - 2020</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="education-card">
+                        <h4>PLUS TWO - Computer Science</h4>
+                        <h5>JNM GHSS Puduppanam</h5>
+                        <p class="date">2014 - 2016</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Projects</h2>
+            </div>
+            <div class="row">
+                <!-- Project 1 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/400x300" alt="Mobile Phone Sales Cart" class="img-fluid project-img">
+                        <div class="project-content">
+                            <h4>Mobile Phone Sales Cart</h4>
+                            <p>An eCommerce website built with Python, Django, HTML, CSS, Bootstrap, JavaScript, and PostgreSQL with Admin, Seller, and Customer roles.</p>
+                            <div class="mb-3">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Django</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                                <span class="tech-badge">Bootstrap</span>
+                            </div>
+                            <a href="https://github.com/adarshrajs1999/sales_project" target="_blank" class="btn btn-sm btn-primary">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/400x300" alt="Online Job Portal Platform" class="img-fluid project-img">
+                        <div class="project-content">
+                            <h4>Online Job Portal Platform</h4>
+                            <p>A job listing website with Admin, Employer, and Jobseeker modules. Employers post jobs, jobseekers apply, and the admin manages user activity.</p>
+                            <div class="mb-3">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Django</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                                <span class="tech-badge">Bootstrap</span>
+                            </div>
+                            <a href="https://github.com/adarshrajs1999/job_portal_project" target="_blank" class="btn btn-sm btn-primary">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/400x300" alt="Freelance Management System" class="img-fluid project-img">
+                        <div class="project-content">
+                            <h4>Freelance Management System</h4>
+                            <p>A web application with three user roles: Admin, Employer, and Freelancer. Employers can post jobs, freelancers can apply, and the admin manages the platform.</p>
+                            <div class="mb-3">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Django</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                                <span class="tech-badge">Bootstrap</span>
+                            </div>
+                            <a href="https://github.com/adarshrajs1999/freelance_management_system" target="_blank" class="btn btn-sm btn-primary">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/400x300" alt="Hotel Rooms Booking Website" class="img-fluid project-img">
+                        <div class="project-content">
+                            <h4>Hotel Rooms Booking Website</h4>
+                            <p>A hotel room booking website where users can rent rooms on a per-day basis with cash and online payments via Razorpay.</p>
+                            <div class="mb-3">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Django</span>
+                                <span class="tech-badge">Razorpay</span>
+                                <span class="tech-badge">Bootstrap</span>
+                            </div>
+                            <a href="https://github.com/adarshrajs1999/omkaar_official_project_localhost" target="_blank" class="btn btn-sm btn-primary">View Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/400x300" alt="Damaru Gold and Diamonds" class="img-fluid project-img">
+                        <div class="project-content">
+                            <h4>Damaru Gold and Diamonds</h4>
+                            <p>A Shopify-based eCommerce website that sells gold and diamond nose-pins with Razorpay integration.</p>
+                            <div class="mb-3">
+                                <span class="tech-badge">Shopify</span>
+                                <span class="tech-badge">Liquid</span>
+                                <span class="tech-badge">Razorpay</span>
+                                <span class="tech-badge">eCommerce</span>
+                            </div>
+                            <a href="http://www.damarugoldanddiamonds.com" target="_blank" class="btn btn-sm btn-primary">Visit Website</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/400x300" alt="Kozhikode For Rent" class="img-fluid project-img">
+                        <div class="project-content">
+                            <h4>Kozhikode For Rent</h4>
+                            <p>A WordPress-powered online real estate platform that lists office spaces available for rent in Kozhikode.</p>
+                            <div class="mb-3">
+                                <span class="tech-badge">WordPress</span>
+                                <span class="tech-badge">Real Estate</span>
+                                <span class="tech-badge">SEO</span>
+                                <span class="tech-badge">Responsive Design</span>
+                            </div>
+                            <a href="http://www.kozhikodeforrent.com" target="_blank" class="btn btn-sm btn-primary">Visit Website</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More Projects Button -->
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" id="loadMoreProjects">Load More Projects</button>
+            </div>
+            
+            <!-- Hidden Projects (will be shown when button is clicked) -->
+            <div id="moreProjects" style="display: none;">
+                <div class="row mt-4">
+                    <!-- Project 7 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="project-card">
+                            <img src="https://via.placeholder.com/400x300" alt="Arora Tourist Home" class="img-fluid project-img">
+                            <div class="project-content">
+                                <h4>Arora Tourist Home</h4>
+                                <p>A WordPress-powered hotel room booking website designed for tourists looking to reserve rooms online.</p>
+                                <div class="mb-3">
+                                    <span class="tech-badge">WordPress</span>
+                                    <span class="tech-badge">Hotel Booking</span>
+                                    <span class="tech-badge">SEO</span>
+                                    <span class="tech-badge">Responsive Design</span>
+                                </div>
+                                <a href="http://www.aroratouristhome.com" target="_blank" class="btn btn-sm btn-primary">Visit Website</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 8 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="project-card">
+                            <img src="https://via.placeholder.com/400x300" alt="Deityom Arts" class="img-fluid project-img">
+                            <div class="project-content">
+                                <h4>Deityom Arts</h4>
+                                <p>A WordPress-powered eCommerce website that sells original art paintings online.</p>
+                                <div class="mb-3">
+                                    <span class="tech-badge">WordPress</span>
+                                    <span class="tech-badge">WooCommerce</span>
+                                    <span class="tech-badge">eCommerce</span>
+                                    <span class="tech-badge">Art</span>
+                                </div>
+                                <a href="http://www.deityomarts.com" target="_blank" class="btn btn-sm btn-primary">Visit Website</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Project 9 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="project-card">
+                            <img src="https://via.placeholder.com/400x300" alt="Deityom Freelancer" class="img-fluid project-img">
+                            <div class="project-content">
+                                <h4>Deityom Freelancer</h4>
+                                <p>A WordPress website built to manage freelancers with features like user registration, task assignment, and messaging.</p>
+                                <div class="mb-3">
+                                    <span class="tech-badge">WordPress</span>
+                                    <span class="tech-badge">Freelance</span>
+                                    <span class="tech-badge">Management</span>
+                                    <span class="tech-badge">User System</span>
+                                </div>
+                                <a href="http://www.deityomfreelancer.com" target="_blank" class="btn btn-sm btn-primary">Visit Website</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h4>Call Me</h4>
+                        <p>+91 8075551892 or +919496081054</p>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4>Email Me</h4>
+                        <p>adarshrajscasual@gmail.com</p>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4>Location</h4>
+                        <p>Vadakara, Kozhikode, Kerala, India</p>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Send Me a Message</h4>
+                            <form id="contactForm">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Subject">
+                                </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h3>Adarsh Raj S</h3>
+            <p>Web Developer | Python Django | WordPress | Shopify</p>
+            <div class="social-icons">
+                <a href="www.linkedin.com/in/adarsh-raj-s-61657a30a" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/adarshrajs1999" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="mt-3">&copy; 2024 Adarsh Raj S. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <script>
+        // Back to Top Button
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 300) {
+                $('.back-to-top').addClass('active');
+            } else {
+                $('.back-to-top').removeClass('active');
+            }
+        });
+        
+        $('.back-to-top').click(function(e) {
+            e.preventDefault();
+            $('html, body').animate({scrollTop: 0}, '300');
+        });
+        
+        // Smooth scrolling for navigation links
+        $('a[href*="#"]').on('click', function(e) {
+            e.preventDefault();
+            
+            $('html, body').animate(
+                {
+                    scrollTop: $($(this).attr('href')).offset().top - 70,
+                },
+                500,
+                'linear'
+            );
+        });
+        
+        // Navbar background change on scroll
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 100) {
+                $('.navbar').addClass('navbar-scrolled');
+            } else {
+                $('.navbar').removeClass('navbar-scrolled');
+            }
+        });
+        
+        // Load More Projects
+        $('#loadMoreProjects').click(function() {
+            $('#moreProjects').slideDown();
+            $(this).hide();
+        });
+        
+        // Contact Form Submission
+        $('#contactForm').submit(function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
